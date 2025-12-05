@@ -5,6 +5,8 @@ Small C implementation that demonstrates RSA key generation, encryption, and CRT
 ## Files
 - README.md: technical notes.
 - rsa_interactive.c: full source for keygen/encrypt/decrypt.
+- trial_division.c / pollards_rho.c: basic factorization demos.
+- snfs.c: toy Special NFS-style factorer with fallback to Pollard rho.
 
 ## Requirements
 - gcc (or any C11 compiler).
@@ -14,8 +16,19 @@ Small C implementation that demonstrates RSA key generation, encryption, and CRT
 ```bash
 gcc rsa_interactive.c -o rsa_interactive
 ./rsa_interactive
+
+gcc trial_division.c -o trial_division
+gcc pollards_rho.c -o pollards_rho
+gcc snfs.c -o snfs
 ```
 The binary asks for a message (up to 1023 chars), encrypts per character, then decrypts with CRT and compares to the original.
+
+### Factorization demos
+- Trial division: `./trial_division <n>`
+- Pollard’s rho: `./pollards_rho <n>`
+- Toy SNFS (special-form n): `./snfs <n> [e] [degree] [B] [K]`
+  - Example (works fast): `./snfs 815730722 3 8 200 5000` (`n = 13^8 + 1`)
+  - For larger special forms (e.g., `614^8 + 1 = 20199795332516287488257`), the toy SNFS is unlikely to finish; you’ll need a real NFS implementation (msieve, cado-nfs) or accept a Pollard fallback.
 
 ## Program flow
 1. Uses fixed exponent `e = 3`.
