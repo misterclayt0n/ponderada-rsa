@@ -1,6 +1,6 @@
 # RSA Interactive
 
-Small C implementation that demonstrates RSA key generation, encryption, and CRT-based decryption, printing each step.
+Minimal C implementation that demonstrates RSA key generation, encryption, and CRT-based decryption, printing each step.
 
 ## Files
 - README.md: technical notes.
